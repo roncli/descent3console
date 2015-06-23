@@ -1,0 +1,26 @@
+{
+    "name": "descent3console",
+    "version": "0.1.0",
+    "description": "A cross-platform, event-driven interface to Descent 3 consoles implemented in node.js.",
+    "homepage": "https://github.com/roncli/descent3console",
+    "bugs": {
+        "url": "https://github.com/roncli/descent3console/issues",
+        "email": "roncli@roncli.com"
+    },
+    "license": "MIT",
+    "author": {
+        "name": "Ronald M. Clifford",
+        "email": "roncli@roncli.com",
+        "url": "http://www.roncli.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/roncli/descent3console.git"
+    },
+    "dependencies": {},
+    "devDependencies": {},
+    "engines": {
+        "node": ">=0.12.4"
+    },
+    "private": false
+}
