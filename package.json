@@ -2,6 +2,10 @@
     "name": "descent3console",
     "version": "0.1.0",
     "description": "A cross-platform, event-driven interface to Descent 3 consoles implemented in node.js.",
+    "keywords": [
+        "Descent 3",
+        "Console"
+    ],
     "homepage": "https://github.com/roncli/descent3console",
     "bugs": {
         "url": "https://github.com/roncli/descent3console/issues",
