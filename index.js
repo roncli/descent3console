@@ -640,7 +640,7 @@ Console.prototype.connect = function() {
 
             // $serverhudnames reply
             if (route(line, /^\*Server Max HUD Name Level: (.*)$/, function(serverHudNames) {
-                d3console.emit("serverhudnames", (serverHudNames === "Team Only" ? "Team" : serverHudNames));
+                d3console.emit("gameinfo", {serverHudNames: serverHudNames === "Team Only" ? "Team" : serverHudNames});
                 return true;
             })) {
                 return;
@@ -696,7 +696,7 @@ Console.prototype.connect = function() {
 
             // $statmsgs reply
             if (route(line, /^\*Statistical Messages: (On|Off)$/, function(statMsgs) {
-                d3console.emit("statmsgs", statMsgs === "On");
+                d3console.emit("gameinfo", {statMsgs: statMsgs === "On"});
                 return true;
             })) {
                 return;
@@ -1287,6 +1287,12 @@ Console.prototype.playerInfo = function(playerNum) {
         return;
     }
     this.send("$playerinfo " + playerNum.toString());
+};
+
+Console.prototype.players = function() {
+    "use strict";
+
+    this.send("$players");
 };
 
 Console.prototype.rehash = function() {
