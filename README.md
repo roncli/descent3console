@@ -318,6 +318,10 @@ Note that all instance methods return nothing.  Any output from these methods is
 
 ## History
 
+### Version 0.1.2 - 7/1/2015
+
+* Fixed memory leak with console routing.
+
 ### Version 0.1.1 - 6/24/2015
 
 * Added documentation.

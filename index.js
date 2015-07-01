@@ -1,17 +1,34 @@
 var events = require("events"),
     util = require("util"),
     net = require("net"),
+    route;
 
-    route = function(data, regex, callback) {
-        "use strict";
+// A safe regexp exec method that does not leak memory.
+RegExp.prototype.safeexec = function(string) {
+    "use strict";
 
-        var matches = regex.exec(data);
-        if (matches) {
-            return callback.apply(null, matches.slice(1));
-        }
+    var result = this.exec(string);
 
-        return false;
-    };
+    if (result) {
+        result.forEach(function(item, index) {
+            result[index] = item.split("").join("");
+        });
+    }
+
+    return result;
+};
+
+// Function to more easily route lines.
+route = function(data, regex, callback) {
+    "use strict";
+
+    var matches = regex.safeexec(data);
+    if (matches) {
+        return callback.apply(null, matches.slice(1));
+    }
+
+    return false;
+};
 
 function Console() {
     "use strict";
