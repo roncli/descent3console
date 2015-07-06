@@ -1209,10 +1209,10 @@ Console.prototype.close = function() {
 
     var d3console = this;
 
-    this.isConnected(function() {
+    if (this.connected) {
         d3console.client.end();
         d3console.client.destroy();
-    });
+    }
 };
 
 Console.prototype.allowTeamChange = function(allowTeamChange) {

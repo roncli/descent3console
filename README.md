@@ -320,6 +320,10 @@ Note that all instance methods return nothing.  Any output from these methods is
 
 ## History
 
+### Version 0.1.4 - 7/6/2015
+
+* Fixed a bug with trying to close a console that's not connected.
+
 ### Version 0.1.3 - 7/6/2015
 
 * Added `invalidpassword` event.
