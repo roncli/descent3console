@@ -92,6 +92,8 @@ The instantiated console object is an `EventEmitter`, and will emit events when 
 
 `invalid (error)` - Input that was recently sent to the server is invalid.  `error` is what about the input was invalid.
 
+`invalidpassword (ip)` - An invalid password was sent to the server from another remote connection.  `ip` is the IP address of the remote user who attempted to login.  Note that this is not sent when you send an invalid password, only for other remote connections. 
+
 `joined (player)` - A player joined the game.  `player` is the name of the player who joined.
 
 `kicked (player)` - A player got kicked from the server.  `player` is the name of the player who got kicked.
@@ -317,6 +319,10 @@ Note that all instance methods return nothing.  Any output from these methods is
 `Console.getColorString(red, green, blue)` - Get the four character string required to change the color of the console line.  `red`, `green`, and `blue` must each be an integer between 1 and 255. 
 
 ## History
+
+### Version 0.1.3 - 7/6/2015
+
+* Added `invalidpassword` event.
 
 ### Version 0.1.2 - 7/1/2015
 

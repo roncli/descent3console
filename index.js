@@ -30,10 +30,17 @@ route = function(data, regex, callback) {
     return false;
 };
 
+/**
+ * Constructor for the console object.
+ * @returns {Console} The new console.
+ * @constructor
+ */
 function Console() {
     "use strict";
 
     events.EventEmitter.call(this);
+
+    return this;
 }
 
 util.inherits(Console, events.EventEmitter);
@@ -180,6 +187,14 @@ Console.prototype.connect = function() {
             // New connection.
             if (route(line, /^New connection \(((?:[0-9]+\.){3}[0-9]+)\)$/, function(ip) {
                 d3console.emit("remoteconnection", ip);
+                return true;
+            })) {
+                return;
+            }
+
+            // Invalid password from another remote connection.
+            if (route(line, /^Invalid login password from ((?:[0-9]+\.){3}[0-9]+)\.$/, function(ip) {
+                d3console.emit("invalidpassword", ip);
                 return true;
             })) {
                 return;
