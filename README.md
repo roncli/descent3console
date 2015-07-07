@@ -146,17 +146,7 @@ The instantiated console object is an `EventEmitter`, and will emit events when 
 
 `say (player, text)` - Someone said something.  `player` is who said it, and `text` was what they said.
 
-`setgaollimit (goalLimit)` - The goal limit was just set.  `goalLimit` is the number of points required to end the level, or null if the goal limit is disabled.
-
-`setmaxplayers (maxPlayers)` - The maximum number of players was just set.  `maxPlayers` is the maximum number of players allowed in the game, including the server.
-
-`setpps (maxPps)` - The maximum PPS of the game was just set.  `maxPps` is the maximum PPS allowed by the server.
-
-`setrespawntime (respawntime)` - The weapon respawn time was just set.  `respawntime` is the weapon respawn time in seconds.
-
 `setteamname` (fromTeam, toTeam)` - A team name was changed.  `fromTeam` is the team's old name, and `toTeam` is the team's new name.
-
-`settimelimit (timeLimit)` - The time limit was just set.  `timeLimit` is the time in minutes before the level ends, or null if the time limit is disabled.
 
 `setwait (time)` - The server will make clients wait in place for a set time before playing.  `time` is the amount of time in seconds after the level begins before players will be able to play.
 
@@ -268,6 +258,8 @@ Note that all instance methods return nothing.  Any output from these methods is
 
 `d3console.killMsgFilter(killMsgFilter)` - Changes the setting for the kill message filter.  `killMsgFilter` is either "none", "simple", or "full".
 
+`d3console.netgameInfo()` - Gets general game information.
+
 `d3console.playerInfo(playerNum)` - Gets player information for a player.  `playerNum` is a player number.  You can get a player's number using the `d3console.players()` command.
 
 `d3console.players()` - Gets the list of players.
@@ -319,6 +311,13 @@ Note that all instance methods return nothing.  Any output from these methods is
 `Console.getColorString(red, green, blue)` - Get the four character string required to change the color of the console line.  `red`, `green`, and `blue` must each be an integer between 1 and 255. 
 
 ## History
+
+### Version 0.1.5 - 7/7/2015
+
+* Added `netgameinfo` method.
+* Fixed a bug with the `safeexec` RegExp extension.
+* Fixed a bug with `timeLimit` detection.
+* Removed `setgaollimit`, `setmaxplayers`, `setpps`, `setrespawntime`, and `settimelimit` events in favor of `gameinfo` events.
 
 ### Version 0.1.4 - 7/6/2015
 

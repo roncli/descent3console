@@ -11,7 +11,11 @@ RegExp.prototype.safeexec = function(string) {
 
     if (result) {
         result.forEach(function(item, index) {
-            result[index] = item.split("").join("");
+            if (item) {
+                result[index] = item.split("").join("");
+            } else {
+                result[index] = undefined;
+            }
         });
     }
 
@@ -114,7 +118,7 @@ Console.prototype.connect = function() {
             }
 
             // Lines to ignore.
-            if (route(line, /^(?:NetGame Information|PNum Name|Packet Loss: N\/A|Mission over\. {2}Looping back to first level in mission file\.|Opening level .*\.\.\.|Downloading mission data\.\.\..* level [1-9][0-9]* [0-9]+ Percent Complete|Analyzing data\.\.\..* level [1-9][0-9]* [0-9]+ Percent Complete|\x08+|Input Command List:|Prefix a '\$' before the commands listed below. {2}To get more detailed help|about a command, type '\$help <command>'|allowteamchange +autobalance|autosavedisconnect +autosavelevel|balance +ban|banlist +changeteam|endlevel +help|hudnames +kick|killmsgfilter +netgameinfo|observer +piggyback|playerinfo +players|rehash +remote|remoteadmin +remoteadminlogout|remoteadminpass +removeban|savestats +scores|serverhudnames +setgoallimit|setmaxplayers +setpps|setrespawntime +setteamname|settimelimit +statmsgs|team +wait|warp +|quit|allowteamchange:|\[(?:Dedicated )?(?:Server|Client) Only\]|Turns off\/on allowing clients to change their team\.|Usage: "\$allowteamchange <off\/on>"|autobalance:|Turns off\/on allowing the automatic team placement of new players by the server\.|Usage: "\$autobalance <off\/on>"|autosavedisconnect:|Enables\/Disables the automatic saving of the game stats if you disconnect from the server\.|Usage: "\$autosavedisconnect <on\/off>"|autosavelevel:|Enables\/Disables the automatic saving of the game stats when the level ends\.|Usage: "\$autosavelevel <on\/off>"|balance:|Automatically balances the teams, based on senority\.|Usage: "\$balance"|\*Balancing Teams|\*Ending the level|ban:|Bans a player from the game\.|Usage: "\$ban <pnum>"|Banning .*|banlist:|Lists the players banned from the game along with their ban number, which can be used to remove the ban\.|Usage: "\$banlist"|changeteam:|Forces a player to a team\.|Usage: "\$changeteam <pnum> <team_name>"|\*Attempting to change .* to .* team|endlevel:|Ends the level\.|Usage: "\$endlevel"|help:|Displays help information for the input commands.|Usage: "\$help \[command\]"|hudnames:|Sets your personal level for the HUD name filter\.|Usage: "\$hudnames <full\/team\/none>"|NOTE: You can only set your HUD Callsign level up to the level that the server is\. {2}So if the server is only allowing up to teammates, you won't be able to set to full|\*Personal HUD Name Level: .*|kick:|Kicks a player from the game\.|Usage: "\$kick <pnum>"|killmsgfilter:|Sets the kill message filter, for what style of messages you want\.|Usage: "\$killmsgfilter <full\/simple\/none>"|netgameinfo:?|observer:|If you pass specify 'on', it puts you into observer mode, else it will return you back to normal mode\.|Usage: "\$observer <on\/off>"|piggyback:|Puts you into Piggyback Observer mode."\$piggyback <pnum>"|playerinfo:|Displays information about a player\.|Usage: "\$playerinfo <pnum>"|\*Getting Playerinfo for .*|players:|Displays a list of the players in the game, with their player numbers\.|Usage: "\$players"|rehash:|Rehashes the hosts\.allow and hosts\.deny files\. {2}First it flushes the old, and reloads them\.|Usages: "\$rehash"|remote:|handles a remote admin command|Usage: "\$remote <command> <option parms> <\.\.\.>"|remoteadmin:|handles enable\/disable remote administration|Usage: "\$remoteadmin <on\/off>"{2}|remoteadminlogout:|handles seeing who is logged in, and allows the server to log them out|If no parameter is given it lists all the players logged in\.|To log out a player give the login-id as a parameter|Usage: "\$remoteadminlogout \[login-id\]"|remoteadminpass:|handles setting\/changing the remote administration password|Usage: "\$remoteadminpass <password>"|removeban:|Removes a ban from a player, given the number associated with them from \$banlist\.|Usage: "\$removeban <player>"|\*Ban Removed|\*Couldn't remove ban|savestats:|Saves the game stats to file immediatly\.|Usage: "\$savestats"|scores:|Displays the scores or stats of the game\.|Usage: "\$scores"|Pilot +(?:Points|Score) +K(?:ills)? +D(?:eaths)? +S(?:uicides)? +Ping *|Pilot +Points BlKillDeaSuicidPing *|serverhudnames:|Sets the highest HUD name filter permitted for the clients\.|Usage: "\$serverhudnames <full\/team\/none>"|setgoallimit:|Changes the goal limit for the level\.|Usage: "\$setgoallimit <points>"|setmaxplayers:|Sets the maximum number of players allowed in the game\.|Usage: "\$setmaxplayers <count>"|setpps:|Changes the Packets Per Second \(PPS\) threshold of the game|Usage: "\$setpps <pps>"|setrespawntime:|Changes the respawn time of the powerups in the level\.|Usage: "\$setrespawntime <seconds>"|setteamname:|Changes the name of a team\.|Usage: "\$setteamname <team_num> <new_team_name>"|settimelimit:|Changes the time limit for the level\.|Usage: "\$settimelimit <minutes>"|statmsgs:|Enables\/Disables random statistical messages\.|Usage: "\$statmsgs <on\/off>"|team:|Change teams for yourself\.|Usage: "\$team <team_name>"|wait:|handles a request to make all clients wait\/or stop waiting\. {2}If a time is giving, the server will wait that long each level until it lets clients to play\.|Usage: "\$wait <on\/off or time-in-seconds>"|warp:|Changes the current level to another level in the mission\.|Usage: "\$warp <level>")$/, function() {
+            if (route(line, /^(?:NetGame Information|PNum Name|Packet Loss: N\/A|Mission over\. {2}Looping back to first level in mission file\.|Opening level .*\.\.\.|Downloading mission data\.\.\..* level [1-9][0-9]* [0-9]+ Percent Complete|Analyzing data\.\.\..* level [1-9][0-9]* [0-9]+ Percent Complete|\x08+|Input Command List:|Prefix a '\$' before the commands listed below. {2}To get more detailed help|about a command, type '\$help <command>'|allowteamchange +autobalance|autosavedisconnect +autosavelevel|balance +ban|banlist +changeteam|endlevel +help|hudnames +kick|killmsgfilter +netgameinfo|observer +piggyback|playerinfo +players|rehash +remote|remoteadmin +remoteadminlogout|remoteadminpass +removeban|savestats +scores|serverhudnames +setgoallimit|setmaxplayers +setpps|setrespawntime +setteamname|settimelimit +statmsgs|team +wait|warp +|quit|allowteamchange:|\[(?:Dedicated )?(?:Server|Client) Only\]|Turns off\/on allowing clients to change their team\.|Usage: "\$allowteamchange <off\/on>"|autobalance:|Turns off\/on allowing the automatic team placement of new players by the server\.|Usage: "\$autobalance <off\/on>"|autosavedisconnect:|Enables\/Disables the automatic saving of the game stats if you disconnect from the server\.|Usage: "\$autosavedisconnect <on\/off>"|autosavelevel:|Enables\/Disables the automatic saving of the game stats when the level ends\.|Usage: "\$autosavelevel <on\/off>"|balance:|Automatically balances the teams, based on senority\.|Usage: "\$balance"|\*Balancing Teams|\*Ending the level|ban:|Bans a player from the game\.|Usage: "\$ban <pnum>"|Banning .*|banlist:|Lists the players banned from the game along with their ban number, which can be used to remove the ban\.|Usage: "\$banlist"|changeteam:|Forces a player to a team\.|Usage: "\$changeteam <pnum> <team_name>"|\*Attempting to change .* to .* team|endlevel:|Ends the level\.|Usage: "\$endlevel"|help:|Displays help information for the input commands.|Usage: "\$help \[command\]"|hudnames:|Sets your personal level for the HUD name filter\.|Usage: "\$hudnames <full\/team\/none>"|NOTE: You can only set your HUD Callsign level up to the level that the server is\. {2}So if the server is only allowing up to teammates, you won't be able to set to full|\*Personal HUD Name Level: .*|kick:|Kicks a player from the game\.|Usage: "\$kick <pnum>"|killmsgfilter:|Sets the kill message filter, for what style of messages you want\.|Usage: "\$killmsgfilter <full\/simple\/none>"|netgameinfo:?|observer:|If you pass specify 'on', it puts you into observer mode, else it will return you back to normal mode\.|Usage: "\$observer <on\/off>"|piggyback:|Puts you into Piggyback Observer mode."\$piggyback <pnum>"|netgameinfo:?|playerinfo:|Displays information about a player\.|Usage: "\$playerinfo <pnum>"|\*Getting Playerinfo for .*|players:|Displays a list of the players in the game, with their player numbers\.|Usage: "\$players"|rehash:|Rehashes the hosts\.allow and hosts\.deny files\. {2}First it flushes the old, and reloads them\.|Usages: "\$rehash"|remote:|handles a remote admin command|Usage: "\$remote <command> <option parms> <\.\.\.>"|remoteadmin:|handles enable\/disable remote administration|Usage: "\$remoteadmin <on\/off>"{2}|remoteadminlogout:|handles seeing who is logged in, and allows the server to log them out|If no parameter is given it lists all the players logged in\.|To log out a player give the login-id as a parameter|Usage: "\$remoteadminlogout \[login-id\]"|remoteadminpass:|handles setting\/changing the remote administration password|Usage: "\$remoteadminpass <password>"|removeban:|Removes a ban from a player, given the number associated with them from \$banlist\.|Usage: "\$removeban <player>"|\*Ban Removed|\*Couldn't remove ban|savestats:|Saves the game stats to file immediatly\.|Usage: "\$savestats"|scores:|Displays the scores or stats of the game\.|Usage: "\$scores"|Pilot +(?:Points|Score) +K(?:ills)? +D(?:eaths)? +S(?:uicides)? +Ping *|Pilot +Points BlKillDeaSuicidPing *|serverhudnames:|Sets the highest HUD name filter permitted for the clients\.|Usage: "\$serverhudnames <full\/team\/none>"|setgoallimit:|Changes the goal limit for the level\.|Usage: "\$setgoallimit <points>"|setmaxplayers:|Sets the maximum number of players allowed in the game\.|Usage: "\$setmaxplayers <count>"|setpps:|Changes the Packets Per Second \(PPS\) threshold of the game|Usage: "\$setpps <pps>"|setrespawntime:|Changes the respawn time of the powerups in the level\.|Usage: "\$setrespawntime <seconds>"|setteamname:|Changes the name of a team\.|Usage: "\$setteamname <team_num> <new_team_name>"|settimelimit:|Changes the time limit for the level\.|Usage: "\$settimelimit <minutes>"|statmsgs:|Enables\/Disables random statistical messages\.|Usage: "\$statmsgs <on\/off>"|team:|Change teams for yourself\.|Usage: "\$team <team_name>"|wait:|handles a request to make all clients wait\/or stop waiting\. {2}If a time is giving, the server will wait that long each level until it lets clients to play\.|Usage: "\$wait <on\/off or time-in-seconds>"|warp:|Changes the current level to another level in the mission\.|Usage: "\$warp <level>")$/, function() {
                 return true;
             })) {
                 return;
@@ -461,8 +465,8 @@ Console.prototype.connect = function() {
                 return;
             }
 
-            if (route(line, /^Time Limit: (None|([1-9][0-9]*)) minutes?$/, function(timeLimit, minutes) {
-                d3console.emit("gameinfo", {timeLimit: timeLimit === "None" ? null : +minutes});
+            if (route(line, /^Time Limit: (None|[1-9][0-9]*)(?: minutes?)?$/, function(timeLimit) {
+                d3console.emit("gameinfo", {timeLimit: timeLimit === "None" ? null : +timeLimit});
                 return true;
             })) {
                 return;
@@ -680,7 +684,7 @@ Console.prototype.connect = function() {
 
             // $setgoallimit reply
             if (route(line, /^\*Goal Limit: (None|[1-9][0-9]*)$/, function(goalLimit) {
-                d3console.emit("setgoallimit", goalLimit === "None" ? null : +goalLimit);
+                d3console.emit("gameinfo", {killGoal: goalLimit === "None" ? null : +goalLimit});
                 return true;
             })) {
                 return;
@@ -688,7 +692,7 @@ Console.prototype.connect = function() {
 
             // $setmaxplayers reply
             if (route(line, /^\*Max Players: ([1-9][0-9]*)$/, function(maxPlayers) {
-                d3console.emit("setmaxplayers", +maxPlayers);
+                d3console.emit("gameinfo", {maxPlayers: +maxPlayers});
                 return true;
             })) {
                 return;
@@ -696,7 +700,7 @@ Console.prototype.connect = function() {
 
             // $setpps reply
             if (route(line, /^\*Max PPS: ([1-9][0-9]*)$/, function(maxPps) {
-                d3console.emit("setpps", +maxPps);
+                d3console.emit("gameinfo", {pps: +maxPps});
                 return true;
             })) {
                 return;
@@ -704,7 +708,7 @@ Console.prototype.connect = function() {
 
             // $setrespawntime reply
             if (route(line, /^\*Respawn Time: ([1-9][0-9]*)$/, function(respawnTime) {
-                d3console.emit("setrespawntime", +respawnTime);
+                d3console.emit("gameinfo", {respawnTime: +respawnTime});
                 return true;
             })) {
                 return;
@@ -720,7 +724,7 @@ Console.prototype.connect = function() {
 
             // $settimelimit reply
             if (route(line, /^\*Time Limit: (Off|[1-9][0-9]*)$/, function(timeLimit) {
-                d3console.emit("settimelimit", timeLimit === "Off" ? null : +timeLimit);
+                d3console.emit("gameinfo", {timeLimit: timeLimit === "Off" ? null : +timeLimit});
                 return true;
             })) {
                 return;
@@ -1309,6 +1313,12 @@ Console.prototype.killMsgFilter = function(killMsgFilter) {
         return;
     }
     this.send("$killmsgfilter " + killMsgFilter);
+};
+
+Console.prototype.netgameInfo = function() {
+    "use strict";
+
+    this.send("$netgameinfo");
 };
 
 Console.prototype.playerInfo = function(playerNum) {
