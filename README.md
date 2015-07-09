@@ -312,6 +312,10 @@ Note that all instance methods return nothing.  Any output from these methods is
 
 ## History
 
+### Version 0.1.6 - 7/8/2015
+
+* Fixed bug with anarchy scores being processed as monsterball scores.
+
 ### Version 0.1.5 - 7/7/2015
 
 * Added `netgameinfo` method.

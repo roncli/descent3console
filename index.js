@@ -636,7 +636,7 @@ Console.prototype.connect = function() {
             // $scores reply
 
             // Monsterball - Needs to come before others due to the odd formatting.
-            if (route(line, /^(.*): +([0-9 ]{7})([0-9 ]{2})([0-9 ]{4})([0-9 ]{3})([0-9 ]{6})([1-9]?[0-9]+) *$/, function(player, points, blunders, kills, deaths, suicides, ping) {
+            if (route(line, /^(.*): +([0-9][0-9 ]{6})([0-9][0-9 ])([0-9][0-9 ]{3})([0-9][0-9 ]{2})([0-9][0-9 ]{5})([1-9]?[0-9]+) *$/, function(player, points, blunders, kills, deaths, suicides, ping) {
                     d3console.emit("monsterballscore", player, +(points.replace(" ", "")), +(blunders.replace(" ", "")), +(kills.replace(" ", "")), +(deaths.replace(" ", "")), +(suicides.replace(" ", "")), +ping);
                     return true;
                 })) {
