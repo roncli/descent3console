@@ -116,9 +116,7 @@ The instantiated console object is an `EventEmitter`, and will emit events when 
 
 `playerinfo (info)` - Player information was received.  `info` is an object that contains one or more key-value pairs.  See the Player Info section for more details.
 
-`playerscore (player, points, kills, deaths, suicides, ping)` - A player's current score.  `player` is the name of the player, `points` is the number of points they have, `kills` is the number of kills they have, `deaths` is the number of deaths they have, `suicides` is the number of suicides they have, and `ping` is their ping to the server in milliseconds.
-
-`playertotalscore (player, points, totalPoints, kills, totalKills, deaths, totalDeaths, suicides, totalSuicides, ping)` - A player's current score for both the current level and across all levels the server has hosted.  `player` is the name of the player, `points` is the number of points they have this level, `totalPoints` is the number of points they have across all levels, `kills` is the number of kills they have this level, `totalKills` is the number of kills they have across all levels, `deaths` is the number of deaths they have this level, `totalDeaths` is the number of deaths they have across all levels, `suicides` is the number of suicides they have this level, `totalSuicides` is the number of suicides they have across all levels, and `ping` is their ping to the server in milliseconds.
+`playerscore (player, points, kills, deaths, suicides, ping)` - A player's current score.  `player` is the name of the player, `points` is the number of points they have, `kills` is the number of kills they have (unreliable in some modes when their kills exceed 9), `deaths` is the number of deaths they have (unreliable in some modes when their deaths exceed 9), `suicides` is the number of suicides they have (unreliable in some modes when their suicides exceed 9), and `ping` is their ping to the server in milliseconds.
 
 `raw (line)` - Data was received from the server.  `line` is the data that was received.
 
@@ -174,7 +172,7 @@ The instantiated console object is an `EventEmitter`, and will emit events when 
 
 `teamchange (player, team)` - A player changed teams.  `player` is the name of the player who changed teams, and `team` is the name of the team they changed to.
 
-`teamplayerscore (player, teamName, points, kills, deaths, suicides, ping)` - A player's current score in a team game.  `player` is the name of the player, 'teamName' is the name of the team, `points` is the number of points they have, `kills` is the number of kills they have, `deaths` is the number of deaths they have, `suicides` is the number of suicides they have, and `ping` is their ping to the server in milliseconds.
+`teamplayerscore (player, teamName, points, kills, deaths, suicides, ping)` - A player's current score in a team game.  `player` is the name of the player, `teamName` is the name of the team, `kills` is the number of kills they have (unreliable in some modes when their kills exceed 9), `deaths` is the number of deaths they have (unreliable in some modes when their deaths exceed 9), `suicides` is the number of suicides they have (unreliable in some modes when their suicides exceed 9), and `ping` is their ping to the server in milliseconds.
 
 `teamscore (teamName, score)` - A team's current score.  `teamName` is the name of the team and `score` is the team's score.
 
@@ -311,6 +309,11 @@ Note that all instance methods return nothing.  Any output from these methods is
 `Console.getColorString(red, green, blue)` - Get the four character string required to change the color of the console line.  `red`, `green`, and `blue` must each be an integer between 1 and 255. 
 
 ## History
+
+### Version 0.1.7 - 7/9/2015
+
+* Removed `playertotalscore` due to bugs with the display.
+* Added documentation warnings about `playerscore` values for `kills`, `deaths`, and `suicides` being incorrect for values above 9.  Users should track these values on their own.
 
 ### Version 0.1.6 - 7/8/2015
 

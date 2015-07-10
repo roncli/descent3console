@@ -667,8 +667,8 @@ Console.prototype.connect = function() {
             }
 
             // Hoard, Hyper-Anarchy
-            if (route(line, /^(.*): +(-?[1-9]?[0-9]+)\[(-?[1-9]?[0-9]+)\] +([1-9]?[0-9]+)\[([1-9]?[0-9]+)\] +([1-9]?[0-9]+)\[([1-9]?[0-9]+)\] +([1-9]?[0-9]+)\[([1-9]?[0-9]+)\] +([1-9]?[0-9]+) *$/, function(player, points, totalPoints, kills, totalKills, deaths, totalDeaths, suicides, totalSuicides, ping) {
-                d3console.emit("playertotalscore", player, +points, +totalPoints, +kills, +totalKills, +deaths, +totalDeaths, +suicides, +totalSuicides, +ping);
+            if (route(line, /^(.*): +(-?[1-9]?[0-9]+)(?:\[[^ ]*)? +([1-9]?[0-9]+)(?:\[[^ ]*)? +([1-9]?[0-9]+)(?:\[[^ ]*)? +([1-9]?[0-9]+)(?:\[[^ ]*)? +([1-9]?[0-9]+) *$/, function(player, points, kills, deaths, suicides, ping) {
+                d3console.emit("playerscore", player, +points, +kills, +deaths, +suicides, +ping);
                 return true;
             })) {
                 return;
