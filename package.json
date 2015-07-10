@@ -1,6 +1,6 @@
 {
     "name": "descent3console",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "description": "A cross-platform, event-driven interface to Descent 3 consoles implemented in node.js.",
     "keywords": [
         "Descent 3",
