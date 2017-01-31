@@ -310,6 +310,10 @@ Note that all instance methods return nothing.  Any output from these methods is
 
 ## History
 
+### Version 0.1.9 - 1/30/2017
+
+* Fixed a bug with the `timeLeft` detection.
+
 ### Version 0.1.8 - 7/26/2015
 
 * Fixed another bug with the `safeexec` RegExp extension.

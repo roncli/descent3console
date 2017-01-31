@@ -472,7 +472,7 @@ Console.prototype.connect = function() {
                 return;
             }
 
-            if (route(line, /^Time Left: (?:(?:([1-9][0-9]+):)?([0-5][0-9]?):)?([0-5][0-9]?) (?:hours?|minutes?|seconds?)$/, function(hours, minutes, seconds) {
+            if (route(line, /^Time Left: (?:(?:([1-9][0-9]+):)?([0-5]?[0-9]):)?([0-5]?[0-9]) (?:hours?|minutes?|seconds?)$/, function(hours, minutes, seconds) {
                 if (!hours) {
                     hours = 0;
                 }
